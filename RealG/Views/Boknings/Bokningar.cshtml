@@ -1,0 +1,30 @@
+﻿@model IEnumerable<RealG.Models.Bokning>
+
+@{
+    ViewData["Title"] = "Booking Details";
+}
+
+<h2>Booking Details</h2>
+
+@if (Model != null && Model.Any())
+{
+    foreach (var booking in Model)
+    {
+        <div>
+            <p><strong>Movie Name:</strong> @TempData["MovieName"]</p>
+           
+            <p><strong>Booking ID:</strong> @booking.BokningId </p>
+            <p><strong>Seat Number:</strong> @booking.StolNummer </p>
+            <p><strong>Customer Name:</strong> @booking.KundNamn</p>
+            <p><strong>Customer Email:</strong> @booking.KundEmail</p>
+            <p><strong>Booking Date:</strong> @booking.BokadDatum.ToString("yyyy-MM-dd HH:mm")</p>
+
+            <!-- Display the associated movie name -->
+            
+        </div>
+    }
+}
+else
+{
+    <p>No booking details found.</p>
+}

@@ -1,0 +1,92 @@
+﻿@model IEnumerable<RealG.Models.Movie>
+
+@{
+    ViewData["Title"] = "Movies";
+}
+
+<style>
+    .movie-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .movie-card {
+        width: 182px; /* Adjust the width as necessary */
+        background-color: #f0f0f0;
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        position: relative; /* Ensure the HD badge is positioned relative to the movie card */
+    }
+
+    .movie-image img {
+        width: 100%;
+        display: block;
+    }
+
+    .hd-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #ffd700;
+        padding: 5px;
+        font-weight: bold;
+        border-radius: 5px;
+    }
+
+    .movie-info {
+        padding: 10px;
+    }
+
+        .movie-info h2 {
+            margin: 0;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .movie-info p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #666;
+        }
+</style>
+
+<h1>Movies</h1>
+
+
+
+<form asp-controller="Boknings" asp-action="SearchBookings" method="post">
+    <p>
+        Boknings Nummer: <input type="text" name="bookingId" />
+        <input type="submit" value="Sök" />
+    </p>
+</form>
+
+
+
+<form asp-controller="Movies" asp-action="Index">
+    <p>
+        Title: <input type="text" name="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+<div class="movie-container">
+    @foreach (var movie in Model)
+    {
+        <a href="@Url.Action("Details", "Movies", new { id = movie.Id })" style="text-decoration:none; color:inherit;">
+            <div class="movie-card">
+                <div class="movie-image">
+                    <img src="@Url.Content("~/images/" + movie.ImagePath)" alt="@movie.Titel" />
+                    <div class="hd-badge">HD</div>
+                </div>
+                <div class="movie-info">
+
+                    <h2>@movie.Titel</h2>
+                    <p>@movie.Beskrivning - @movie.Pris</p>
+                    <p>@movie.Genre</p>
+                </div>
+            </div>
+        </a>
+    }
+</div>

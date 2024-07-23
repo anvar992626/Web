@@ -1,0 +1,14 @@
+﻿@model RealG.Models.Bokning
+@{
+    ViewData["Title"] = "Confirmation";
+}
+
+<h1>Booking Confirmation</h1>
+
+<p>Date: @Model.BokadDatum</p>
+<p>Name: @Model.KundNamn</p>
+<p>Email: @Model.KundEmail</p>
+<p>Selected Seats: @Model.StolNummer</p>
+<p>Boknings Nummer: @Model.BokningId</p>
+
+<!-- Add more details as needed -->

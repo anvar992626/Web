@@ -1,0 +1,47 @@
+﻿@model RealG.Models.Bokning
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Bokning</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="StolNummer" class="control-label"></label>
+                <input asp-for="StolNummer" class="form-control" />
+                <span asp-validation-for="StolNummer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KundNamn" class="control-label"></label>
+                <input asp-for="KundNamn" class="form-control" />
+                <span asp-validation-for="KundNamn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KundEmail" class="control-label"></label>
+                <input asp-for="KundEmail" class="form-control" />
+                <span asp-validation-for="KundEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FöreställningId" class="control-label"></label>
+                <select asp-for="FöreställningId" class ="form-control" asp-items="ViewBag.FöreställningId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

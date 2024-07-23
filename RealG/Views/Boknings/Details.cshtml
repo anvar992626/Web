@@ -1,0 +1,42 @@
+﻿@model RealG.Models.Bokning
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Bokning</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StolNummer)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StolNummer)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.KundNamn)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.KundNamn)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.KundEmail)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.KundEmail)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Föreställning)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Föreställning.FöreställningId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.BokningId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

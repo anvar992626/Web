@@ -1,0 +1,114 @@
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand[b-e35by8903z] {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+a[b-e35by8903z] {
+  color: #0077cc;
+}
+
+.btn-primary[b-e35by8903z] {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active[b-e35by8903z], .nav-pills .show > .nav-link[b-e35by8903z] {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.border-top[b-e35by8903z] {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom[b-e35by8903z] {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow[b-e35by8903z] {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy[b-e35by8903z] {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+.footer[b-e35by8903z] {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px;
+}
+.movie-grid[b-e35by8903z] {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 15px;
+}
+
+.movie-item[b-e35by8903z] {
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+    .movie-item:hover[b-e35by8903z] {
+        transform: scale(1.03);
+    }
+
+.movie-image[b-e35by8903z] {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+/* Existing styles */
+
+/* Cinema-style movie grid */
+.cinema-style-movie-grid[b-e35by8903z] {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+    background-color: #000; /* Dark background for cinema effect */
+    color: #fff;
+}
+
+.cinema-style-movie-item[b-e35by8903z] {
+    flex-basis: 20%;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+    .cinema-style-movie-item:hover[b-e35by8903z] {
+        transform: scale(1.05);
+    }
+
+.cinema-style-movie-image[b-e35by8903z] {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.movie-info[b-e35by8903z] {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7); /* Translucent layer */
+    color: white;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .cinema-style-movie-item[b-e35by8903z] {
+        flex-basis: 45%; /* Adjust for smaller screens */
+    }
+}

@@ -1,0 +1,45 @@
+﻿@model List<RealG.Models.Bokning>
+
+@{
+    ViewData["Title"] = "Search Bookings";
+}
+
+<h1>Search Bookings</h1>
+
+<form asp-action="SearchBookings" method="get" class="form-inline">
+    <div class="form-group">
+        <label for="bookingId">Booking ID:</label>
+        <input type="text" class="form-control" name="bookingId" id="bookingId" />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+@if (Model != null && Model.Count > 0)
+{
+    <h2>Search Results:</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Booking ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <!-- Add other booking-related columns as needed -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var booking in Model)
+            {
+                <tr>
+                    <td>@booking.BokningId</td>
+                    <td>@booking.KundNamn</td>
+                    <td>@booking.KundEmail</td>
+                    <!-- Add other booking-related columns as needed -->
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No bookings found.</p>
+}

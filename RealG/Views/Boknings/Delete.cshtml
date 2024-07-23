@@ -1,0 +1,45 @@
+﻿@model RealG.Models.Bokning
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Bokning</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StolNummer)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StolNummer)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.KundNamn)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.KundNamn)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.KundEmail)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.KundEmail)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Föreställning)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Föreställning.FöreställningId)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="BokningId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

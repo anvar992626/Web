@@ -1,0 +1,225 @@
+﻿@model RealG.Models.Movie
+@{
+    ViewData["Title"] = Model.Titel;
+    int rows = ViewBag.Rows ?? 0;
+    int seatsPerRow = ViewBag.SeatsPerRow ?? 0;
+    var performances = ViewBag.Performances as IEnumerable<dynamic>;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@Model.Titel</title>
+    <!-- Include necessary CSS and scripts -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Styles for Seating Chart -->
+    <style>
+        .seating-chart .seat {
+            width: 30px;
+            height: 30px;
+            margin: 5px;
+            background-color: #808080;
+            display: inline-block;
+            cursor: pointer;
+            color: white; /* White text for visibility */
+        }
+
+          
+
+        #seatingChartContainer .screen-label {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px; /* Adjust as needed for spacing */
+        }
+
+        .screen-label {
+            display: none; /* Initially hide the screen label */
+        }
+        .seating-chart .seat.booked-red {
+            background-color: red; /* Red for booked seats */
+        }
+
+        .seating-chart .seat.selected-blue {
+            background-color: #007bff; /* Blue for selected seats */
+        }
+
+
+    </style>
+
+
+</head>
+<body>
+    <div class="container">
+        <h1>@Model.Titel</h1>
+        <!-- Movie Info -->
+        <div>
+            <img src="@Url.Content("~/images/" + Model.ImagePath)" alt="@Model.Titel" />
+            <h2>Details</h2>
+            <p>@Model.Beskrivning</p>
+            <p>Price: @Model.Pris</p>
+            <p>Genre: @Model.Genre</p>
+        </div>
+
+        <!-- Ticket Purchasing Interface -->
+        <div>
+            <h2>Köp biljetter</h2>
+            <form asp-controller="Movies" asp-action="Purchase" method="post">
+
+                <label for="day">Välj dag:</label>
+                <input type="date" id="day" name="day" required>
+                <label for="name">Namn:</label>
+                <input type="text" id="name" name="name" required placeholder="Ditt namn">
+                <label for="email">E-post:</label>
+                <input type="email" id="email" name="email" required placeholder="Din e-post">
+                <input type="hidden" id="selectedSeats" name="selectedSeats">
+                <input type="hidden" id="selectedShowtimeId" name="selectedShowtimeId">
+                <button type="submit" class="btn btn-primary">Boka Nu</button>
+            </form>
+        </div>
+      
+
+        <!-- Seating Chart Container -->
+        <div id="seatingChartContainer" style="display: none;">
+            <div class="screen-label" style="text-align: center; font-weight: bold;">SCREEN</div>
+            <div class="seating-chart"></div>
+        </div>
+
+       
+    </div>
+    <!-- Add this inside your <body> tag where you want to display the performances -->
+    <div id="performancesContainer"></div>
+    <!-- Add this modal dialog code inside your <body> tag -->
+    <div class="modal fade" id="bookingConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="bookingConfirmationModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="bookingConfirmationModalLabel">Booking Confirmation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="bookingConfirmationMessage"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="confirmationMessage" style="display: none;">
+        <h2>Booking Confirmation</h2>
+        <p id="confirmationText"></p>
+    </div>
+    
+    
+
+
+
+    <!-- JavaScript Code -->
+    
+
+        <script>
+        $(document).ready(function () {
+           
+            $('#day').change(function () {
+                var selectedDate = $(this).val();
+                var movieId = '@ViewBag.MovieId';
+                loadPerformancesForDate(selectedDate, movieId);
+            });
+
+            function loadPerformancesForDate(date, movieId) {
+              
+                $.ajax({
+                    url: '@Url.Action("GetPerformancesForDate", "Movies")',
+                    type: 'GET',
+                    data: { dateString: date, movieId: movieId },
+                    dataType: 'json',
+                    success: function (response) {
+                        if (!response.success) {
+                            alert(response.message);
+                            return;
+                        }
+
+                        var performances = response.performances;
+                        $('#performancesContainer').empty();
+
+                        $.each(performances, function (index, föreställning) {
+                            var html = '<div>' +
+                                '<p>Salong: ' + föreställning.salongNamn + '</p>' +
+                                '<p>Tid: ' + föreställning.tider + '</p>' +
+                                '<p>Platser kvar: ' + föreställning.antalStolar + '</p>' +
+                                '<button class="select-performance" data-performance-id="' + föreställning.föreställningId + '">Select</button>' +
+                                '</div>';
+                            $('#performancesContainer').append(html);
+                        });
+
+                        bindSelectPerformanceButtons();
+                    },
+                    error: function () {
+                        alert('Error loading performances.');
+                    }
+
+                });
+                $('#seatingChartContainer').show();
+            }
+
+
+
+            function bindSelectPerformanceButtons() {
+                $('.select-performance').click(function () {
+                    var performanceId = $(this).data('performance-id');
+                    $('#selectedShowtimeId').val(performanceId); // Update the hidden input for the selected performance ID
+                    loadSeatingChart(performanceId); // Load the seating chart for the selected performance
+                });
+            }
+
+            function loadSeatingChart(performanceId) {
+                $.ajax({
+                    url: '@Url.Action("LoadSeatingChart", "Movies")',
+                    type: 'GET',
+                    data: { showtimeId: performanceId },
+                    success: function (html) {
+                        $('#seatingChartContainer').html(html).show();
+                        $('.screen-label').show(); // Show the screen label
+                        bindSeatSelection(); // Bind seat selection after loading the chart
+                    },
+                    error: function () {
+                        alert('Error loading seating chart.');
+                    }
+                });
+            }
+
+
+            // JavaScript code
+            function bindSeatSelection() {
+                $('.seating-chart .seat:not(.booked-red)').click(function () {
+                    if (!$(this).hasClass('selected-blue')) {
+                        $(this).toggleClass('selected-blue'); // Toggle the 'selected-blue' class on click
+                        updateSelectedSeats(); // Update the hidden input field with selected seats
+                    }
+                });
+            }
+
+
+            // Function to update the selected seats input field
+            function updateSelectedSeats() {
+                var selectedSeats = [];
+                $('.seating-chart .seat.selected-blue').each(function () {
+                    var row = $(this).data('row');
+                    var seat = $(this).data('seat');
+                    selectedSeats.push(row + '-' + seat);
+                });
+                $('#selectedSeats').val(selectedSeats.join(','));
+            }
+
+           
+
+        });
+    </script>
+
+</body>
+</html>
