@@ -1,8 +1,157 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@{
+    ViewData["Title"] = "Salong Hanna";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="hero" id="home">
+    <div class="container hero-content">
+        <div class="status-line">
+            <span class="status-badge closed">Stängt</span>
+            <span class="status-text">Öppnar igen kl. 10:00</span>
+        </div>
+        <h1>Salong Hanna</h1>
+        <p class="subtitle">Hair Stylist · 9 posts</p>
+        <p class="tagline">Premium grooming för den moderna mannen – skarpa frisyrer, avslappnad service.</p>
+        <div class="hero-actions">
+            <a class="btn btn-primary btn-cta" href="tel:+468362420">Boka en klippning</a>
+            <a class="btn btn-outline-light" href="#services">Se tjänster</a>
+        </div>
+        <div class="contact-panel">
+            <div class="contact-item">
+                <div class="icon-circle">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="1.7" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 11c1.657 0 3-1.343 3-3S13.657 5 12 5 9 6.343 9 8s1.343 3 3 3z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8c0 7-7.5 13-7.5 13S4.5 15 4.5 8a7.5 7.5 0 1115 0z" /></svg>
+                </div>
+                <div>
+                    <p class="label">Adress</p>
+                    <p class="value">Glömmingegränd 18A, Stockholm, Sweden 163 62</p>
+                </div>
+                <a class="text-link" href="https://maps.google.com/?q=Gl%C3%B6mmingegr%C3%A4nd+18A,+Stockholm,+Sweden+163+62" target="_blank" rel="noopener">Få vägbeskrivning</a>
+            </div>
+            <div class="contact-item">
+                <div class="icon-circle">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="1.7" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.28 6.72 15 15 15h1.5a.75.75 0 00.75-.75v-2.508a.75.75 0 00-.576-.73l-3.462-.865a.75.75 0 00-.83.372l-.972 1.693a11.278 11.278 0 01-5.35-5.35l1.693-.972a.75.75 0 00.372-.83l-.865-3.462a.75.75 0 00-.73-.576H3a.75.75 0 00-.75.75v1.5z" /></svg>
+                </div>
+                <div>
+                    <p class="label">Telefon</p>
+                    <p class="value"><a class="value" href="tel:+468362420">+46 8 36 24 20</a></p>
+                </div>
+                <span class="text-link muted">Helst SMS vid sena avbokningar</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="hours">
+    <div class="container">
+        <div class="section-header">
+            <p class="eyebrow">Öppettider</p>
+            <h2>Planera ditt besök</h2>
+            <p class="section-lead">Vi håller koll på tiden åt dig – kom in för en noggrant utförd klippning när det passar dig bäst.</p>
+        </div>
+        <div class="hours-card">
+            <div class="current-status">
+                <span class="status-dot closed"></span>
+                <div>
+                    <p class="label">Status</p>
+                    <p class="value">Stängt just nu · öppnar 10:00</p>
+                </div>
+            </div>
+            <div class="hours-grid">
+                <div class="hours-row"><span>Måndag</span><span>10:00 - 18:00</span></div>
+                <div class="hours-row"><span>Tisdag</span><span>10:00 - 18:00</span></div>
+                <div class="hours-row"><span>Onsdag</span><span>10:00 - 18:00</span></div>
+                <div class="hours-row"><span>Torsdag</span><span>10:00 - 19:00</span></div>
+                <div class="hours-row"><span>Fredag</span><span>10:00 - 17:00</span></div>
+                <div class="hours-row"><span>Lördag</span><span>10:00 - 15:00</span></div>
+                <div class="hours-row"><span>Söndag</span><span>Stängt</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="services">
+    <div class="container">
+        <div class="section-header">
+            <p class="eyebrow">Tjänster</p>
+            <h2>Skuret för kvalitet</h2>
+            <p class="section-lead">Klassiska herrklippningar, skarpa fades och helskäggsvård med känsla för detaljer och precision.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card service-card">
+                    <div class="icon-circle subtle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="1.7" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
+                    </div>
+                    <h3>Herrklippning</h3>
+                    <p>Personliga klippningar med fokus på form, struktur och stil som håller länge.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card service-card">
+                    <div class="icon-circle subtle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="1.7" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" /></svg>
+                    </div>
+                    <h3>Fade &amp; Styling</h3>
+                    <p>Precision fades med rena linjer och stylingtips för att behålla looken hemma.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card service-card">
+                    <div class="icon-circle subtle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="1.7" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m-11.25.75h5.25m-5.25 4.5h5.25m-5.25 4.5h5.25m-5.25 4.5h5.25" /></svg>
+                    </div>
+                    <h3>Skägg &amp; Trim</h3>
+                    <p>Rakning, konturer och trimning som ger en välvårdad, maskulin finish.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section dark-section" id="gallery">
+    <div class="container">
+        <div class="section-header">
+            <p class="eyebrow">Galleri</p>
+            <h2>9 senaste posterna</h2>
+            <p class="section-lead">En glimt av arbetet från stolen – inspireras av rena linjer och noggrann styling.</p>
+        </div>
+        <div class="gallery-grid">
+            @for (int i = 1; i <= 9; i++)
+            {
+                <div class="gallery-card">
+                    <div class="gallery-overlay">Inlägg @i</div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="section" id="why">
+    <div class="container">
+        <div class="section-header">
+            <p class="eyebrow">Varför välja oss?</p>
+            <h2>En salong byggd för män</h2>
+            <p class="section-lead">Personlig service, exakt hantverk och en miljö där du kan koppla av. Vi lyssnar, finjusterar och levererar en stil som känns naturlig.</p>
+        </div>
+        <div class="row g-4 align-items-center">
+            <div class="col-md-6">
+                <ul class="benefits-list">
+                    <li>Modern, maskulin atmosfär med privata stolar.</li>
+                    <li>Detaljfokuserade frisörer med många återkommande kunder.</li>
+                    <li>Enkel bokning via telefon och tydliga öppettider.</li>
+                    <li>Premiumprodukter som håller frisyren skarp hela dagen.</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <div class="highlight-card">
+                    <p class="eyebrow">Kontakt</p>
+                    <h3>Redo när du är</h3>
+                    <p>Ring för att boka din nästa klippning eller beard trim. Välkommen in på Glömmingegränd 18A.</p>
+                    <div class="cta-row">
+                        <a class="btn btn-primary btn-cta" href="tel:+468362420">Ring +46 8 36 24 20</a>
+                        <a class="btn btn-outline-light" href="https://maps.google.com/?q=Gl%C3%B6mmingegr%C3%A4nd+18A,+Stockholm,+Sweden+163+62" target="_blank" rel="noopener">Visa på karta</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
